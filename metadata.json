@@ -1,0 +1,15 @@
+{
+  "name": "Astra AI: Dual-Engine Intelligence",
+  "description": "An advanced dual-assistant platform featuring a friendly chatbot and a professional specialized AI, with real-time multimodal capabilities, adaptive learning, and enterprise-grade security.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "Multimodal AI",
+    "Real-time Collaboration",
+    "Adaptive Learning",
+    "Data Analytics",
+    "Search Grounding"
+  ]
+}

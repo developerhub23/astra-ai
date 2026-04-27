@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "ChatSession": {
+      "title": "Chat Session",
+      "description": "A conversation thread",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "participants": { "type": "array", "items": { "type": "string" } },
+        "title": { "type": "string" },
+        "assistantType": { "type": "string", "enum": ["astra", "lumina"] },
+        "lastMessage": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sessionId", "assistantType"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "An individual message in a chat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderType": { "type": "string", "enum": ["user", "assistant"] },
+        "content": { "type": "string" },
+        "multimodalData": { 
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["image", "video", "audio"] },
+            "url": { "type": "string" }
+          }
+        },
+        "feedback": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "senderType", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User profile data"
+    },
+    "/sessions/{sessionId}": {
+      "schema": "ChatSession",
+      "description": "Chat session data"
+    },
+    "/sessions/{sessionId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a session"
+    }
+  }
+}
